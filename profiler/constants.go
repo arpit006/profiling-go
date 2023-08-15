@@ -1,18 +1,18 @@
 package profiler
 
 const (
-	CPU_PROF = "cpu"
-	MEM_PROF = "mem"
+	CpuProfFile = "cpu"
+	MemProfFile = "mem"
 )
 
 const (
-	PROF_EXT = ".prof"
+	ProfFileExt = ".prof"
 )
 
 const (
-	ROOT_DIR = "stats"
+	RootDir = "stats"
 )
 
 const (
-	FWD_SLASH = "/"
+	FwdSlash = "/"
 )

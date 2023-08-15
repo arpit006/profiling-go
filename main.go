@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"github.com/arpit006/profiling-go/profiler"
+	"math/rand"
 	"strconv"
 )
 
@@ -12,12 +12,12 @@ var (
 )
 
 func main() {
-	//analyseCpu()
-	analyseMem()
+	analyseCpu()
+	//analyseMem()
 }
 
 func analyseCpu() {
-	cpu := profiler.NewCPUProfiler("test", "localhost", 8001)
+	cpu, _ := profiler.NewCPUProfiler("test", "localhost", 8001)
 
 	err := cpu.Start()
 	if err != nil {
@@ -26,6 +26,7 @@ func analyseCpu() {
 	}
 	work()
 
+	cpu.Stop()
 	err = cpu.Analyse()
 	if err != nil {
 		fmt.Printf("[error] in analysing. error is: [%s]", err)
@@ -33,7 +34,7 @@ func analyseCpu() {
 }
 
 func analyseMem() {
-	mem := profiler.NewMemoryProfiler("test", "localhost", 8001)
+	mem, _ := profiler.NewMemoryProfiler("test", "localhost", 8001)
 
 	err := mem.Start()
 	if err != nil {
@@ -43,6 +44,7 @@ func analyseMem() {
 
 	work()
 
+	mem.Stop()
 	err = mem.Analyse()
 	if err != nil {
 		fmt.Printf("[error] in analysing. error is: [%s]", err)
