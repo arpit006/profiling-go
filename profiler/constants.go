@@ -16,3 +16,11 @@ const (
 const (
 	FwdSlash = "/"
 )
+
+const (
+	DateFmt = "20060102_150405"
+)
+
+const (
+	EmptyStr = ""
+)

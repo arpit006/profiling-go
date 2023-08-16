@@ -58,8 +58,8 @@ func NewCPUProfiler(appName, host string, port int) (Profiler, error) {
 func (cpu *cpuProfiler) Start() error {
 	f, err := os.Create(cpu.getAbsoluteFilePath())
 	if err != nil {
-		fmt.Printf("[error] error in creating file. error is: [%s]\n", err)
-		return errors.Join(FileErr, fmt.Errorf("error in creating file. error is: [%s]\n", err))
+		fmt.Printf("[error] error in creating currFile. error is: [%s]\n", err)
+		return errors.Join(FileErr, fmt.Errorf("error in creating currFile. error is: [%s]\n", err))
 	}
 
 	cpu.file = f
@@ -78,7 +78,7 @@ func (cpu *cpuProfiler) Stop() error {
 
 	err := cpu.file.Close()
 	if err != nil {
-		fmt.Printf("[error] in closing the file: [%s]. error is: [%s]", cpu.getFilePath(), err)
+		fmt.Printf("[error] in closing the currFile: [%s]. error is: [%s]", cpu.getFilePath(), err)
 		return errors.Join(FileErr, err)
 	}
 	return nil
