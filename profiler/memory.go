@@ -57,8 +57,8 @@ func NewMemoryProfiler(appName, host string, port int) (Profiler, error) {
 func (mem *memoryProfiler) Start() error {
 	f, err := os.Create(mem.getAbsoluteFilePath())
 	if err != nil {
-		fmt.Printf("[error] error in creating file. error is: [%s]\n", err)
-		return errors.Join(FileErr, fmt.Errorf("error in creating file. error is: [%s]\n", err))
+		fmt.Printf("[error] error in creating currFile. error is: [%s]\n", err)
+		return errors.Join(FileErr, fmt.Errorf("error in creating currFile. error is: [%s]\n", err))
 	}
 	mem.file = f
 	return nil
@@ -72,7 +72,7 @@ func (mem *memoryProfiler) Stop() error {
 
 	err = mem.file.Close()
 	if err != nil {
-		fmt.Printf("[error] in closing the file: [%s]. error is: [%s]", mem.getFilePath(), err)
+		fmt.Printf("[error] in closing the currFile: [%s]. error is: [%s]", mem.getFilePath(), err)
 		return errors.Join(FileErr, err)
 	}
 	return nil

@@ -5,6 +5,7 @@ import (
 	"github.com/arpit006/profiling-go/profiler"
 	"math/rand"
 	"strconv"
+	"time"
 )
 
 var (
@@ -12,8 +13,10 @@ var (
 )
 
 func main() {
-	analyseCpu()
+	//analyseCpu()
 	//analyseMem()
+
+	analyseAsyncMem()
 }
 
 func analyseCpu() {
@@ -51,12 +54,29 @@ func analyseMem() {
 	}
 }
 
+func analyseAsyncMem() {
+	mem, _ := profiler.NewAsyncMemProfiler("test", "localhost", 8001, 2 * time.Minute, 30 * time.Second)
+
+	err := mem.Start()
+	if err != nil {
+		fmt.Printf("[error] in mem profiling. error is: [%s]", err)
+		return
+	}
+
+	work()
+
+	//mem.Stop()
+	time.Sleep(5 * time.Minute)
+}
+
 func work() {
-	for i := 1; i <= 15000; i++ {
+	i := 1
+	for  {
 		//time.Sleep(10 * time.Millisecond)
-		fmt.Printf("i: [%d]\n", i)
+		//fmt.Printf("i: [%d]\n", i)
 		r := rand.Intn(i)
 		key := fmt.Sprintf("%d:%d", i, r)
 		m[key] = strconv.Itoa(i)
+		i = i + 1
 	}
 }
