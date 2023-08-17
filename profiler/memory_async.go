@@ -70,6 +70,11 @@ func (a *asyncMemoryProfiler) Start() error {
 			return
 		}
 	}()
+
+	go func() {
+		printGCStats()
+		time.Sleep(600 * time.Millisecond)
+	}()
 	return nil
 }
 
