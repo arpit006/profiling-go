@@ -66,7 +66,7 @@ func (a *asyncMemoryProfiler) Start() error {
 	go func() {
 		err := a.startInBackground()
 		if err != nil {
-			fmt.Printf("[error] in profiling memory async")
+			fmt.Printf("[error] in profiling memory async. error is: [%s]", err)
 			return
 		}
 	}()

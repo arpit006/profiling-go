@@ -31,7 +31,6 @@ func getCurrWorkingDir() (string, error) {
 		fmt.Printf("[error] in getting current working directory. error is: [%s]\n", err)
 		return EmptyStr, errors.Join(NewProfilerErr, fmt.Errorf("[error] in getting current working directory. error is: [%s]", err))
 	}
-	fmt.Printf("[info] currentWorkingDir: [%s]\n", wd)
 	return wd, nil
 }
 
