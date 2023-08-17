@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime/pprof"
+	"strconv"
 	"time"
 )
 
@@ -72,8 +73,12 @@ func (a *asyncMemoryProfiler) Start() error {
 	}()
 
 	go func() {
-		printGCStats()
-		time.Sleep(600 * time.Millisecond)
+		i := 1
+		for {
+			printGCStats(strconv.Itoa(i))
+			time.Sleep(2 * time.Second)
+			i = i + 1
+		}
 	}()
 	return nil
 }
